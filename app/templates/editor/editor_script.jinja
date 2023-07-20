@@ -1,0 +1,67 @@
+<script>
+    let textarea = document.getElementById("editor");
+    var editor = CodeMirror.fromTextArea(textarea, {
+        lineNumbers: true
+    });
+
+    $(function(){
+        $(".execute-btn").click(function(){
+            if (editor.getValue()) {
+                let code = editor.getValue().replace("\n", " ");
+                let data = {
+                    "code": code
+                }
+                $.ajax({
+                    url: "{{url_for('api.execute')}}",
+                    type: "post",
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        if (result.status === "no_result") {
+                            $("#result_div").empty();
+                            $("#result_div").html(`<p>No result found!</p>`)
+                        } else {
+                            $("#result_div").empty();
+                            let html = `
+                                            <table id="result_table">
+                                                <thead>
+                                                    <tr>
+                                                        ${result.keys.map(key => (
+                                                            `<th>${key}</th>`
+                                                        )).join("\n")}
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    ${result.values.map(value => {
+                                                        return `
+                                                            <tr>
+                                                                ${value.map(item => (
+                                                                    `<td>${item}</td>`
+                                                                )).join("\n")}
+                                                            </tr>
+                                                        `
+                                                    }).join("\n")}
+                                                </tbody>
+                                            </table>
+                            `
+                            $("#result_div").append(html)
+                            $('#result_table').DataTable();
+                            $("#result_table_filter").css("display", "none");
+                        }
+                    },
+                    error: function (result) {
+                        $("#result_div").empty();
+                        $("#result_div").html(`<p style="color: red;">${result.responseJSON.message}</p>`)
+                    }
+                })
+            } else {
+                Swal.fire(
+                    'Invalid',
+                    "No query to execute!",   
+                    'error'
+                )
+            }
+        })
+    })
+</script>

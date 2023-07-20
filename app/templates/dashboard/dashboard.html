@@ -1,0 +1,450 @@
+{% extends "main.jinja" %}
+{% block main %}
+
+{% include("dashboard/dashboard_script.jinja") %}
+{% include("dashboard/dashboard_style.jinja") %}
+
+<div class="m-5">
+    <div class="row mt-5">
+        <div class="col-sm-12 col-md-12 col-lg-12 mt-5">
+            <img src="/static/images/header.png" class="mt-5" />
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+                <!-- Product -->
+                {% for product in products %}
+                <div class="col-sm-12 col-md-4 col-lg-3 mt-5">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <img src="{{product['image']}}" class="product-img" />
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <p class="pl-3 pr-4"><b>{{product['name']}}</b></p>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5">
+                            <div class="star-rating pl-3 pr-4">
+                                {% if product['rating'] == 5 %}
+                                <input id="star-5-{{product['id']}}" type="radio" name="rating-{{product['id']}}"
+                                    value="star-5" checked />
+                                <label for="star-5-{{product['id']}}" title="5 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                {% else %}
+                                <input id="star-5-{{product['id']}}" type="radio" name="rating-{{product['id']}}"
+                                    value="star-5" />
+                                <label for="star-5-{{product['id']}}" title="5 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                {% endif %}
+                                {% if product['rating'] == 4 %}
+                                <input id="star-4-{{product['id']}}" type="radio" name="rating-{{product['id']}}"
+                                    value="star-4" checked />
+                                <label for="star-4-{{product['id']}}" title="4 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                {% else %}
+                                <input id="star-4-{{product['id']}}" type="radio" name="rating-{{product['id']}}"
+                                    value="star-4" />
+                                <label for="star-4-{{product['id']}}" title="4 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                {% endif %}
+                                {% if product['rating'] == 3 %}
+                                <input id="star-3-{{product['id']}}" type="radio" name="rating-{{product['id']}}"
+                                    value="star-3" checked />
+                                <label for="star-3-{{product['id']}}" title="3 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                {% else %}
+                                <input id="star-3-{{product['id']}}" type="radio" name="rating-{{product['id']}}"
+                                    value="star-3" />
+                                <label for="star-3-{{product['id']}}" title="3 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                {% endif %}
+                                {% if product['rating'] == 2 %}
+                                <input id="star-2-{{product['id']}}" type="radio" name="rating-{{product['id']}}"
+                                    value="star-2" checked />
+                                <label for="star-2-{{product['id']}}" title="2 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                {% else %}
+                                <input id="star-2-{{product['id']}}" type="radio" name="rating-{{product['id']}}"
+                                    value="star-2" />
+                                <label for="star-2-{{product['id']}}" title="2 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                {% endif %}
+                                {% if product['rating'] == 1 %}
+                                <input id="star-1-{{product['id']}}" type="radio" name="rating-{{product['id']}}"
+                                    value="star-1" checked />
+                                <label for="star-1-{{product['id']}}" title="1 star">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                {% else %}
+                                <input id="star-1-{{product['id']}}" type="radio" name="rating-{{product['id']}}"
+                                    value="star-1" />
+                                <label for="star-1-{{product['id']}}" title="1 star">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <div class="row pl-3 pr-4">
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-right">
+                                    <p><b>${{product['selling_price']}}</b></p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-left">
+                                    <p class="price-strike"><b>${{product['marked_price']}}</b></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 pl-5">
+                            <a href="/order?id={{product['id']}}">
+                                <button class="purchase-btn ml-4"><b>Buy Now!</b></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <!-- Repetetive Code -->
+                <!-- <div class="col-sm-12 col-md-4 col-lg-3 mt-5">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <img src="/static/images/toy.png" class="product-img" />
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <p class="pl-3 pr-4"><b>Lego Classic - Vehicle Construction</b></p>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5">
+                            <div class="star-rating pl-3 pr-4">
+                                <input id="star-5" type="radio" name="rating" value="star-5" />
+                                <label for="star-5" title="5 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-4" type="radio" name="rating" value="star-4" checked />
+                                <label for="star-4" title="4 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-3" type="radio" name="rating" value="star-3" />
+                                <label for="star-3" title="3 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-2" type="radio" name="rating" value="star-2" />
+                                <label for="star-2" title="2 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-1" type="radio" name="rating" value="star-1" />
+                                <label for="star-1" title="1 star">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <div class="row pl-3 pr-4">
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-right">
+                                    <p><b>$3.99</b></p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-left">
+                                    <p class="price-strike"><b>$4.99</b></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 pl-5">
+                            <button class="purchase-btn ml-4"><b>Buy Now!</b></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-3 mt-5">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <img src="/static/images/toy.png" class="product-img" />
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <p class="pl-3 pr-4"><b>Lego Classic - Vehicle Construction</b></p>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5">
+                            <div class="star-rating pl-3 pr-4">
+                                <input id="star-5" type="radio" name="rating" value="star-5" />
+                                <label for="star-5" title="5 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-4" type="radio" name="rating" value="star-4" checked />
+                                <label for="star-4" title="4 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-3" type="radio" name="rating" value="star-3" />
+                                <label for="star-3" title="3 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-2" type="radio" name="rating" value="star-2" />
+                                <label for="star-2" title="2 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-1" type="radio" name="rating" value="star-1" />
+                                <label for="star-1" title="1 star">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <div class="row pl-3 pr-4">
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-right">
+                                    <p><b>$3.99</b></p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-left">
+                                    <p class="price-strike"><b>$4.99</b></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 pl-5">
+                            <button class="purchase-btn ml-4"><b>Buy Now!</b></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-3 mt-5">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <img src="/static/images/toy.png" class="product-img" />
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <p class="pl-3 pr-4"><b>Lego Classic - Vehicle Construction</b></p>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5">
+                            <div class="star-rating pl-3 pr-4">
+                                <input id="star-5" type="radio" name="rating" value="star-5" />
+                                <label for="star-5" title="5 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-4" type="radio" name="rating" value="star-4" checked />
+                                <label for="star-4" title="4 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-3" type="radio" name="rating" value="star-3" />
+                                <label for="star-3" title="3 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-2" type="radio" name="rating" value="star-2" />
+                                <label for="star-2" title="2 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-1" type="radio" name="rating" value="star-1" />
+                                <label for="star-1" title="1 star">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <div class="row pl-3 pr-4">
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-right">
+                                    <p><b>$3.99</b></p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-left">
+                                    <p class="price-strike"><b>$4.99</b></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 pl-5">
+                            <button class="purchase-btn ml-4"><b>Buy Now!</b></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-3 mt-5">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <img src="/static/images/toy.png" class="product-img" />
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <p class="pl-3 pr-4"><b>Lego Classic - Vehicle Construction</b></p>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5">
+                            <div class="star-rating pl-3 pr-4">
+                                <input id="star-5" type="radio" name="rating" value="star-5" />
+                                <label for="star-5" title="5 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-4" type="radio" name="rating" value="star-4" checked />
+                                <label for="star-4" title="4 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-3" type="radio" name="rating" value="star-3" />
+                                <label for="star-3" title="3 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-2" type="radio" name="rating" value="star-2" />
+                                <label for="star-2" title="2 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-1" type="radio" name="rating" value="star-1" />
+                                <label for="star-1" title="1 star">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <div class="row pl-3 pr-4">
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-right">
+                                    <p><b>$3.99</b></p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-left">
+                                    <p class="price-strike"><b>$4.99</b></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 pl-5">
+                            <button class="purchase-btn ml-4"><b>Buy Now!</b></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-3 mt-5">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <img src="/static/images/toy.png" class="product-img" />
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <p class="pl-3 pr-4"><b>Lego Classic - Vehicle Construction</b></p>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5">
+                            <div class="star-rating pl-3 pr-4">
+                                <input id="star-5" type="radio" name="rating" value="star-5" />
+                                <label for="star-5" title="5 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-4" type="radio" name="rating" value="star-4" checked />
+                                <label for="star-4" title="4 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-3" type="radio" name="rating" value="star-3" />
+                                <label for="star-3" title="3 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-2" type="radio" name="rating" value="star-2" />
+                                <label for="star-2" title="2 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-1" type="radio" name="rating" value="star-1" />
+                                <label for="star-1" title="1 star">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <div class="row pl-3 pr-4">
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-right">
+                                    <p><b>$3.99</b></p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-left">
+                                    <p class="price-strike"><b>$4.99</b></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 pl-5">
+                            <button class="purchase-btn ml-4"><b>Buy Now!</b></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-3 mt-5">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <img src="/static/images/toy.png" class="product-img" />
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <p class="pl-3 pr-4"><b>Lego Classic - Vehicle Construction</b></p>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5">
+                            <div class="star-rating pl-3 pr-4">
+                                <input id="star-5" type="radio" name="rating" value="star-5" />
+                                <label for="star-5" title="5 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-4" type="radio" name="rating" value="star-4" checked />
+                                <label for="star-4" title="4 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-3" type="radio" name="rating" value="star-3" />
+                                <label for="star-3" title="3 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-2" type="radio" name="rating" value="star-2" />
+                                <label for="star-2" title="2 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-1" type="radio" name="rating" value="star-1" />
+                                <label for="star-1" title="1 star">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <div class="row pl-3 pr-4">
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-right">
+                                    <p><b>$3.99</b></p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-left">
+                                    <p class="price-strike"><b>$4.99</b></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 pl-5">
+                            <button class="purchase-btn ml-4"><b>Buy Now!</b></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-3 mt-5">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <img src="/static/images/toy.png" class="product-img" />
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <p class="pl-3 pr-4"><b>Lego Classic - Vehicle Construction</b></p>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5">
+                            <div class="star-rating pl-3 pr-4">
+                                <input id="star-5" type="radio" name="rating" value="star-5" />
+                                <label for="star-5" title="5 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-4" type="radio" name="rating" value="star-4" checked />
+                                <label for="star-4" title="4 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-3" type="radio" name="rating" value="star-3" />
+                                <label for="star-3" title="3 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-2" type="radio" name="rating" value="star-2" />
+                                <label for="star-2" title="2 stars">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input id="star-1" type="radio" name="rating" value="star-1" />
+                                <label for="star-1" title="1 star">
+                                    <i class="active fa fa-star" aria-hidden="true"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center pr-5 mt-3">
+                            <div class="row pl-3 pr-4">
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-right">
+                                    <p><b>$3.99</b></p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-6 text-left">
+                                    <p class="price-strike"><b>$4.99</b></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 pl-5">
+                            <button class="purchase-btn ml-4"><b>Buy Now!</b></button>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- End of Repetetive Code -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

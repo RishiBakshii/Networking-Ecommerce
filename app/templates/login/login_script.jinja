@@ -1,0 +1,36 @@
+<script>
+    $(function(){
+        $(".login-button").click(function(){
+            let data = {
+                "email": $('#email').val(),
+                "password": $("#password").val()
+            }
+            $.ajax({
+                url: "{{url_for('api.login')}}",
+                type: "post",
+                data: JSON.stringify(data),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (result) {
+                    window.location.href = `{{url_for('views.dashboard')}}`
+                },
+                error: function (result) {
+                    Swal.fire(
+                        'Uh Oh!',
+                        result.responseJSON.message,
+                        'error'
+                    )
+                }
+            })
+        })
+    })
+    function show_hide_password() {
+        if ($("#password_icon").hasClass("fa-eye")) {
+            $("#password_icon").removeClass("fa-eye").addClass("fa-eye-slash")
+            $("#password").attr("type", "password");
+        } else {
+            $("#password_icon").removeClass("fa-eye-slash").addClass("fa-eye")
+            $("#password").attr("type", "text");
+        }
+    }
+</script>

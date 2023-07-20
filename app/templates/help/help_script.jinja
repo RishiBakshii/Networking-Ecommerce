@@ -1,0 +1,37 @@
+<script>
+    $(function(){
+        $(".attach-btn").click(function(){
+            $("#attachment").click();
+        })
+        $("#attachment").change(function(){
+            $("#attachment_name").html($("#attachment")[0].value.split("\\").pop())
+        })
+        $(".submit-btn").click(function(){
+            var fd = new FormData();
+            fd.append("title", $("#title").val())
+            fd.append("description", $("#description").val())
+            fd.append('attachment', $('#attachment')[0].files[0])
+            $.ajax({
+                url: "{{url_for('api.submit_help')}}",
+                type: "post",
+                contentType: false,
+                processData: false,
+                data: fd,
+                success: function (result) {
+                    Swal.fire(
+                        "Thanks",
+                        "We will reach out to you soon",
+                        'success'
+                    )
+                },
+                error: function (result) {
+                    Swal.fire(
+                        'Error',
+                        result.responseJSON.message,
+                        'error'
+                    )
+                }
+            })
+        })
+    })
+</script>

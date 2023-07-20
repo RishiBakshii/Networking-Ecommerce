@@ -1,0 +1,61 @@
+<script>
+    $(function(){
+        $(".address-btn").click(function(){
+            let data = {
+                house_number: $("#house_number").val(),
+                city: $("#city").val(),
+                state: $("#state").val(),
+                country: $("#country").val(),
+                pin_code: $("#pin_code").val(),
+            }
+            $.ajax({
+                url: "{{url_for('api.add_address')}}",
+                type: "post",
+                data: JSON.stringify(data),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (result) {
+                    window.location.reload();
+                },
+                error: function (result) {
+                    Swal.fire(
+                        'Uh Oh!',
+                        result.responseJSON.message,
+                        'error'
+                    )
+                }
+            })
+        })
+        $(".order-btn").click(function(){
+            let searchParams = new URLSearchParams(window.location.search)
+            let data = {
+                address_id: $('input[name="address"]:checked').val(),
+                amount: "{{('%0.2f' % (product['selling_price'] + 0.49)) | float }}",
+                product_id: searchParams.get('id')
+            }
+            $.ajax({
+                url: "{{url_for('api.create_order')}}",
+                type: "post",
+                data: JSON.stringify(data),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (result) {
+                    Swal.fire(
+                        'Awesome!',
+                        'Your order has been placed!',
+                        'success'
+                    ).then(() => {
+                        window.location.href = "/dashboard"
+                    })
+                },
+                error: function (result) {
+                    Swal.fire(
+                        'Uh Oh!',
+                        result.responseJSON.message,
+                        'error'
+                    )
+                }
+            })
+        })
+    })
+</script>

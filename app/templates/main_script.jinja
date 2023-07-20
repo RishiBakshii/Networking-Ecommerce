@@ -1,0 +1,14 @@
+<script>
+    function logout_user() {
+        $.ajax({
+            url: "{{url_for('api.logout')}}",
+            type: 'post',
+            success: function (result) {
+                window.location.href = "{{url_for('views.login')}}";
+            },
+            error: function (result) {
+                alert(result.responseJSON.message);
+            }
+        });
+    }
+</script>

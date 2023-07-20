@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;900&display=swap" rel="stylesheet">
+
+    <!-- Sweet Alert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    {% include("login/login_script.jinja") %}
+    {% include("login/login_style.jinja") %}
+    <div class="main-container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6 text-center" id="left-section">
+                <div class="row mt-5">
+                    <div class="col-sm-12 col-md-12 col-lg-12 text-center text-white">
+                        <h1 class="login-logo"><b>Toy-e-Wagon</b></h1>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 text-center p-3">
+                        <img src="/static/images/login.png" width="90%" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 align-self-center pl-5 pr-5" id="right-section">
+                <div class="row pl-5 pr-5">
+                    <div class="col-sm-12 col-md-12 col-lg-12 pl-5 pr-5">
+                        <h1>Login</h1>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 pl-5 pr-5 mt-2">
+                        <p class="paragraph-text">Login into your account to view our products and access your profile
+                            to track orders</p>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 pl-5 pr-5 mt-5">
+                        <input type="text" name="email" class="login-input" id="email" placeholder="E-mail address" />
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 pl-5 pr-5 mt-5">
+                        <div class="inputWithIcon">
+                            <input type="password" name="password" class="login-input" id="password"
+                                placeholder="Password" />
+                            <i class="fa fa-eye-slash fa-lg fa-fw" id="password_icon" onclick="show_hide_password();"
+                                aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 pl-5 pr-5 mt-5 text-right">
+                        <button class="login-button">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="loader">
+        <!-- <img src="/static/images/loading.gif" class="loading-gif"> -->
+    </div>
+</body>
+
+</html>

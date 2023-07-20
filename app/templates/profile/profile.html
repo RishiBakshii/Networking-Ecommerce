@@ -1,0 +1,110 @@
+{% extends "main.jinja" %}
+{% block main %}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+
+{% include("profile/profile_script.jinja") %}
+{% include("profile/profile_style.jinja") %}
+
+<div class="m-5">
+    <div class="row mt-5">
+        <div class="col-sm-12 col-md-4 col-lg-4 mt-5">
+            <div class="row mt-5">
+                <div class="col-sm-12 col-md-12 col-lg-12 mt-5">
+                    <p><b>{{user['name']}}</b></p>
+                    <p style="color: #828282;">{{user['contact']}}</p>
+                    <hr />
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 mt-5">
+                    <p><b>Address</b></p>
+                    {% for address in addresses %}
+                    <div class="address-box mt-2">
+                        <p style="color: #828282;">{{address['house_number']}}, {{address["city"]}},
+                            {{address['state']}},
+                            {{address['country']}} - {{address['pin_code']}}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-8 col-lg-8 mt-5">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row mt-5 order-container p-5">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h3 style="color: #828282;"><b>Orders</b></h3>
+                        </div>
+                        <div class="col-sm-10 col-md-10 col-lg-10 mt-4">
+                            <input type="text" class="form-control" name="order_id" id="order_id"
+                                placeholder="Search for an order by Order ID" />
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-lg-2 text-center mt-4">
+                            <button class="search-btn order-btn">Search</button>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 mt-5" id="order_list">
+                            {% if orders | length == 0 %}
+                            <h5>No orders to display</h5>
+                            {% else %}
+                            <table id="order_table">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orders_data">
+                                    {% for order in orders %}
+                                    <tr>
+                                        <td><img src="{{order[0]}}" width=100 /></td>
+                                        <td>{{order[1]}}</td>
+                                        <td>{{order[2]}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <!-- Tickets -->
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row mt-5 order-container p-5">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h3 style="color: #828282;"><b>Tickets</b></h3>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 mt-5" id="order_list">
+                            {% if tickets | length == 0 %}
+                            <h5>No tickets to display</h5>
+                            {% else %}
+                            <table id="ticket_table">
+                                <thead>
+                                    <tr>
+                                        <th>GUID</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Attachment</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for ticket in tickets %}
+                                    <tr>
+                                        <td>{{ticket[1]}}</td>
+                                        <td>{{ticket[3]}}</td>
+                                        <td>{{ticket[4]}}</td>
+                                        <td><a href="/api/download/{{ticket[5]}}">Attachment</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

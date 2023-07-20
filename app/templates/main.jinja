@@ -1,0 +1,101 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;900&display=swap" rel="stylesheet">
+
+    <!-- Sweet Alert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% include("main_script.jinja") %}
+    {% include("main_style.jinja") %}
+</head>
+
+<body>
+    <div class="main-container">
+        <nav class="navbar fixed-top navbar-expand navbar-light" style="background: #442ea6;">
+            <div class="navbar-collapse" id="navbarsExample02">
+                <a class="navbar-brand pl-5 pr-5" href="/">
+                    <span style="font-size: 2em; color: white;"><b>Toy-e-Wagon</b></span>
+                </a>
+                <div>
+                    <div class="searchInputWrapper">
+                        <input class="searchInput" type="text" placeholder='Search'>
+                        <i class="searchInputIcon fa fa-search"></i>
+                        </input>
+                    </div>
+                </div>
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item align-self-center" id="dashboard_navigator">
+                        <a class="nav-link" href="{{url_for('views.dashboard')}}">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12 text-center text-white mt-2">
+                                    <i class="fa fa-tachometer nav-icon"></i>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 text-center text-white">
+                                    <p class="nav-text">Dashboard</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item align-self-center" id="profile_navigator">
+                        <a class="nav-link" href="{{url_for('views.profile')}}?id={{user_id}}">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12 text-center text-white mt-2">
+                                    <i class="fa fa-user nav-icon"></i>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 text-center text-white">
+                                    <p class="nav-text">Profile</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link" onclick="logout_user()">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12 text-center text-white mt-2">
+                                    <i class="fa fa-sign-out nav-icon"></i>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 text-center text-white">
+                                    <p class="nav-text">Logout</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('views.help_page')}}">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12 text-center text-white mt-2 help-button">
+                                    <i class="fa fa-question-circle-o nav-icon"></i>
+                                    <span class="nav-text p-3" style="font-size: 1.5em;">Help</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-md-0"> </form>
+            </div>
+        </nav>
+    </div>
+    <div>
+        {% block main %}{% endblock %}
+    </div>
+</body>
+
+</html>

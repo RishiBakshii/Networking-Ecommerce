@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <title>Editor</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Code Editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.js"
+        integrity="sha512-XMlgZzPyVXf1I/wbGnofk1Hfdx+zAWyZjh6c21yGo/k1zNC4Ve6xcQnTDTCHrjFGsOrVicJsBURLYktVEu/8vQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.css"
+        integrity="sha512-6sALqOPMrNSc+1p5xOhPwGIzs6kIlST+9oGWlI4Wwcbj1saaX9J3uzO3Vub016dmHV7hM+bMi/rfXLiF5DNIZg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Sweet Alert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css">
+
+    <!-- Datatable -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 mt-5 text-white">
+                <h3>Tables Available -</h3>
+                <ol>
+                    <li>customers</li>
+                    <li>suppliers</li>
+                    <li>company_products</li>
+                    <li>company_orders</li>
+                    <li>order_items</li>
+                </ol>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 mt-5">
+                <textarea id="editor"></textarea>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 mt-5 text-center">
+                <button class="execute-btn">Execute</button>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 mt-5 mb-5 p-5" id="result_box">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <h1>Output</h1>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 mt-3" id="result_div">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include("editor/editor_script.jinja") %}
+    {% include("editor/editor_style.jinja") %}
+</body>
+
+</html>

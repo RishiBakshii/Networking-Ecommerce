@@ -1,0 +1,39 @@
+<script>
+    $(document).ready( function () {
+        $('#order_table').DataTable();
+        $("#order_table_filter").css("display", "none");
+        $('#ticket_table').DataTable();
+        $("#ticket_table_filter").css("display", "none");
+    } );
+    $(function(){
+        $(".order-btn").click(function(){
+            let data = {
+                order_id: $("#order_id").val()
+            }
+            $.ajax({
+                url: `{{url_for('api.search_order')}}?order_id=${$("#order_id").val()}`,
+                type: "get",
+                success: function (result) {
+                    $("#orders_data").empty()
+                    for (let i = 0; i < result.orders.length; i++) {
+                        let html = `
+                            <tr>
+                                <td><img src="${result.orders[i][0]}" width=100 /></td>
+                                <td>${result.orders[i][1]}</td>
+                                <td>${result.orders[i][2]}</td>
+                            </tr>
+                        `
+                        $("#orders_data").append(html)
+                    }
+                },
+                error: function (result) {
+                    Swal.fire(
+                        'Uh Oh!',
+                        result.responseJSON.message,
+                        'error'
+                    )
+                }
+            })
+        })
+    })
+</script>

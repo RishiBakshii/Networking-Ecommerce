@@ -1,0 +1,90 @@
+<style>
+    body {
+        direction: ltr;
+        text-align:left;
+        background-color: #f0f1f3;
+        font-family: 'Fira Sans', sans-serif;
+        overflow-x: hidden;
+    }
+    .blur {
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+    }
+    #loader {
+        position: fixed;
+        display: none;
+        align-items: center;
+        width: 50%;
+        top: 30%;
+        left: 35%;
+        z-index: 999;
+    }
+    .loading-gif {
+        width: 50%;
+        height: auto;
+    }
+    .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+        color: #72f588;
+    }
+    .navbar-light .navbar-nav .nav-link {
+        color: white;
+    }
+
+    .searchInputWrapper {
+        position: relative;
+    }
+
+    .searchInput {
+        width: 20rem;
+        height: 2rem;
+        padding: 0 1rem; 
+        border-radius: 2rem;
+        border: none;
+        background-color: #c5b5e5;
+        transition: transform 0.1s ease-in-out;
+    }
+
+    ::placeholder {
+        color: black;
+    }
+
+    :focus::placeholder {
+        text-indent: -999px
+    }
+
+    .searchInput:focus {
+        outline: none;
+        transform: scale(1.1);
+        transition: all 0.1s ease-in-out;
+    }
+
+    .searchInputIcon {
+        position: absolute;
+        right: 0.8rem;
+        top: 0.5rem;
+        color: black;
+        transition: all 0.1s ease-in-out;
+    }
+
+    .container:focus-within > 
+    .searchInputWrapper > .searchInputIcon {
+        right: 0.2rem;
+    }
+
+    .nav-icon {
+        font-size: 2em;
+    }
+
+    .nav-text {
+        font-size: 1em;
+    }
+
+    .help-button {
+        background-color: #673dcf;
+        padding: 0.5em 1em;
+        border-radius: 2em;
+    }
+</style>
